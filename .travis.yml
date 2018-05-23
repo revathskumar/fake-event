@@ -1,0 +1,22 @@
+sudo: false
+language: node_js
+node_js:
+  - "6"
+  - "7"
+  - "8"
+  - "9"
+  - "10"
+
+cache:
+  directories:
+    - "node_modules"
+    - ~/.npm
+
+before_install:
+    - npm install -g npm@latest npm-audit-ci@latest
+
+jobs:
+  include:
+    - stage: NPM audit
+      script: npm-audit-ci -c
+      node_js: "10"
